@@ -1,0 +1,18 @@
+{
+    "principalTitle": "Menú principal",
+    "createPolls": "Crear encuesta",
+    "showPolls": "Mostrar encuestas",
+    "settingsTitle": "Ajustes",
+    "selectLenguage": "Selección de lenguaje",
+    "settings": {
+        "languages": "Lenguajes",
+        "english": "Inglés",
+        "spanish": "Español"
+    },
+    "login-register": {
+        "already": "¿Ya tiene usuario?",
+        "or": "o",
+        "register": "Registrar",
+        "signIn": "Iniciar sesión"
+    }
+}

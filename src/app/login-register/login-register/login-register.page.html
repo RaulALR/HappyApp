@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-form">
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/login-register/register']" expand="block" color="primary">{{'login-register.register' | translate}}</ion-button>
+
+        <span class="divider line one-line">{{'login-register.or' | translate}}</span>
+
+        <span class="already">{{'login-register.already' | translate}}</span>
+
+        <ion-button [routerLink]="['/login-register/login']" expand="block" color="danger">Sign In</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

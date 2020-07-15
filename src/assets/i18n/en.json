@@ -1,0 +1,18 @@
+{
+    "principalTitle": "Principal menu",
+    "createPolls": "Create poll",
+    "showPolls": "Show polls",
+    "settingsTitle": "Settings",
+    "selectLenguage": "Select language",
+    "settings": {
+        "languages": "Lenguages",
+        "english": "English",
+        "spanish": "Spanish"
+    },
+    "login-register": {
+        "already": "Already a user?",
+        "or": "or",
+        "register": "Register",
+        "signIn": "Sign in"
+    }
+}

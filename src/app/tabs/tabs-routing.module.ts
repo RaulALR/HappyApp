@@ -9,26 +9,26 @@ const routes: Routes = [
     children: [
       {
         path: 'principal-menu',
-        loadChildren: () => import('../principal-menu/principal-menu.module').then(m => m.PrincipalMenuModule)
+        loadChildren: () => import('./principal-menu/principal-menu.module').then(m => m.PrincipalMenuModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'create-poll',
+        loadChildren: () => import('./principal-menu/create-poll/create-poll.module').then(m => m.CreatePollModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/principal-menu',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/principal-menu',
     pathMatch: 'full'
   }
 ];
@@ -37,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
