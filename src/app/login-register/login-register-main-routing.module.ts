@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'login-register',
-        loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+        loadChildren: () => import('./login-register/login-register.module').then(m => m.LoginRegisterPageModule)
       },
       {
         path: 'login',
@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/login-register-main',
+    redirectTo: '/login-register-main/login-register',
     pathMatch: 'full'
   }
 ];

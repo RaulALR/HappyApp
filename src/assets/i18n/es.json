@@ -4,15 +4,40 @@
     "showPolls": "Mostrar encuestas",
     "settingsTitle": "Ajustes",
     "selectLenguage": "Selección de lenguaje",
+    "disconnect": "Cerrar sesión",
     "settings": {
         "languages": "Lenguajes",
         "english": "Inglés",
-        "spanish": "Español"
+        "spanish": "Español",
+        "closeSessionToast": "Sesión cerrada"
     },
     "login-register": {
         "already": "¿Ya tiene usuario?",
         "or": "o",
         "register": "Registrar",
         "signIn": "Iniciar sesión"
+    },
+    "login": {
+        "email": "Email",
+        "password": "Contraseña",
+        "title": "Log in",
+        "signIn": "Entrar",
+        "forgotPassword": "¿Has olvidado la contraseña?"
+    },
+    "register": {
+        "firstName": "Nombre",
+        "lastName": "Apellidos",
+        "email": "Email",
+        "password": "Contraseña",
+        "signUp": "Registar",
+        "title": "Registro",
+        "userSignUp": "Usuario registrado con éxito"
+    },
+    "createPoll": {
+        "title": "Creación de encuesta",
+        "questions": "Preguntas",
+        "users": "Usuarios",
+        "create": "Crear",
+        "pollCreated": "Encuesta creada"
     }
 }

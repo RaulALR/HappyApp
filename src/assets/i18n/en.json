@@ -4,15 +4,40 @@
     "showPolls": "Show polls",
     "settingsTitle": "Settings",
     "selectLenguage": "Select language",
+    "disconnect": "Disconnect",
     "settings": {
         "languages": "Lenguages",
         "english": "English",
-        "spanish": "Spanish"
+        "spanish": "Spanish",
+        "closeSessionToast": "Session closed"
     },
     "login-register": {
         "already": "Already a user?",
         "or": "or",
         "register": "Register",
         "signIn": "Sign in"
+    },
+    "login": {
+        "email": "Email",
+        "password": "Password",
+        "title": "Log in",
+        "signIn": "Sign in",
+        "forgotPassword": "Forgot password?"
+    },
+    "register": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "signUp": "Sing up",
+        "title": "Sing up",
+        "userSignUp": "Successful registered user"
+    },
+    "createPoll": {
+        "title": "Create polls",
+        "questions": "Questions",
+        "users": "Users",
+        "create": "Create",
+        "pollCreated":"Poll created"
     }
 }

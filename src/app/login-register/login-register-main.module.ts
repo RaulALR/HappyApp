@@ -18,4 +18,4 @@ import { LoginRegisterPage } from './login-register-main.page';
   ],
   declarations: [LoginRegisterPage]
 })
-export class LoginRegisterPageModule {}
+export class LoginRegisterMainPageModule {}

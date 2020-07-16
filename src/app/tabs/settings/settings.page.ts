@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -10,7 +11,11 @@ import { ActionSheetController } from '@ionic/angular';
 export class SettingsPage {
   public translateService: TranslateService;
 
-  constructor(translate: TranslateService, public actionSheetController: ActionSheetController) {
+  constructor(
+    translate: TranslateService,
+    public actionSheetController: ActionSheetController,
+    public router: Router,
+    public toastController: ToastController) {
     this.translateService = translate;
     this.translateService.setDefaultLang('es');
     this.translateService.use('es');
@@ -19,17 +24,13 @@ export class SettingsPage {
   async openLenguageActionSheet() {
     const actionSheet = await this.actionSheetController.create({
       header: this.translateService.instant('settings.languages'),
-      cssClass: 'my-custom-class',
       buttons: [{
         text: this.translateService.instant('settings.spanish'),
-        role: 'destructive',
-        icon: 'trash',
         handler: () => {
           this.setLanguage('es');
         }
       }, {
         text: this.translateService.instant('settings.english'),
-        icon: 'share',
         handler: () => {
           this.setLanguage('en');
         }
@@ -38,7 +39,20 @@ export class SettingsPage {
     await actionSheet.present();
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: this.translateService.instant('settings.closeSessionToast'),
+      duration: 2000
+    });
+    toast.present();
+  }
+
   public setLanguage(lang: string): void {
     this.translateService.use(lang);
+  }
+
+  public closeSession() {
+    this.presentToast();
+    this.router.navigate(['/login-register-main']);
   }
 }

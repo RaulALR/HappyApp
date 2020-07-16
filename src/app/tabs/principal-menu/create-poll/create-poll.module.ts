@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatePollPage } from './create-poll.page';
 
 import { CreatePollPageRoutingModule } from './create-poll-routing.module';
@@ -13,10 +13,11 @@ import { CreatePollPageRoutingModule } from './create-poll-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: CreatePollPage }]),
     CreatePollPageRoutingModule,
     TranslateModule
   ],
   declarations: [CreatePollPage]
 })
-export class CreatePollModule {}
+export class CreatePollModule { }
