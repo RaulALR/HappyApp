@@ -12,6 +12,14 @@ import { AppComponent } from './app.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './redux/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './redux/auth-reducer.ts/auth.effects';
+import { HttpService } from './core/services/http.service';
+import { Utils } from './core/services/utils';
+import { AuthService } from './core/services/auth.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -23,6 +31,9 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument(),
     TranslateModule.forRoot({
       defaultLanguage: 'es',
       loader: {
@@ -36,6 +47,9 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     StatusBar,
     SplashScreen,
+    HttpService,
+    Utils,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

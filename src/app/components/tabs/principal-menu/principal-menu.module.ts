@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { PrincipalMenuPage } from './principal-menu.page';
 
 import { PrincipalMenuPageRoutingModule } from './principal-menu-routing.module';
-import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
+import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 
 @NgModule({
   imports: [
