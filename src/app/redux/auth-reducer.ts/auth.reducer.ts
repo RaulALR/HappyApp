@@ -6,7 +6,7 @@ export const authReducers = (state = initialAuthState, action: AuthActions) => {
         case EAuthActions.GetAuth: {
             return {
                 ...state,
-                username: action.payload.username,
+                email: action.payload.email,
                 password: action.payload.password,
             };
         }

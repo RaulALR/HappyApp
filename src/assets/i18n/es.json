@@ -22,7 +22,8 @@
         "password": "Contraseña",
         "title": "Log in",
         "signIn": "Entrar",
-        "forgotPassword": "¿Has olvidado la contraseña?"
+        "forgotPassword": "¿Has olvidado la contraseña?",
+        "userSignIn": "Incio de sesión correcto"
     },
     "register": {
         "firstName": "Nombre",

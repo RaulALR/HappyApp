@@ -22,7 +22,8 @@
         "password": "Password",
         "title": "Log in",
         "signIn": "Sign in",
-        "forgotPassword": "Forgot password?"
+        "forgotPassword": "Forgot password?",
+        "userSignIn": "Login successfuly"
     },
     "register": {
         "firstName": "First name",

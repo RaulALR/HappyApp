@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '../../../redux/app.state';
 import { UtilsService } from '../../../core/shared/utils';
 import { TranslateService } from '@ngx-translate/core';
+import { FormGroup } from '@angular/forms';
+import { GetAuth } from 'src/app/redux/auth-reducer.ts/auth.actions';
+import { loginForms } from './login.forms';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['login.page.scss']
 })
 export class LoginPage extends BaseComponent {
+  public formGroup: FormGroup;
 
   constructor(
     public store: Store<IAppState>,
@@ -18,14 +22,15 @@ export class LoginPage extends BaseComponent {
     public translateService: TranslateService
   ) {
     super(store, utils, translateService);
+    this.formGroup = this.utils.buildForm(loginForms);
   }
 
-  logIn(event) {
+  logIn() {
     const params = {
-      // username: this.formGroup.get('username').value,
-      // password: this.formGroup.get('password').value
+      email: this.formGroup.get('email').value,
+      password: this.formGroup.get('password').value
     };
-    // this.store.dispatch(new GetAuth(params));
+    this.store.dispatch(new GetAuth(params));
   }
 
 

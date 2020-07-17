@@ -8,20 +8,21 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form [formGroup]="formGroup">
     <ion-item lines="full">
       <ion-label position="floating">{{ 'login.email' | translate }}</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">{{ 'login.password' | translate }}</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" required formControlName="password"></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button [routerLink]="['/tabs']" type="submit" color="danger" expand="block">{{ 'login.signIn' | translate }}</ion-button>
+        <ion-button (click)="logIn()" type="submit" color="danger" expand="block">
+          {{ 'login.signIn' | translate }}</ion-button>
         <a [routerLink]="['/forgot-password']" class="small-text">{{ 'login.forgotPassword' | translate }}</a>
       </ion-col>
     </ion-row>

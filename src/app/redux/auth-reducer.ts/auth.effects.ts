@@ -24,14 +24,14 @@ export class AuthEffects {
         switchMap(
             (action) => {
                 const params = {
-                    username: action.payload && action.payload.username ? action.payload.username : null,
+                    email: action.payload && action.payload.email ? action.payload.email : null,
                     password: action.payload && action.payload.password ? action.payload.password : null
                 };
 
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.login, 'POST', params).pipe(
                     map(
                         (res) => {
-                            this.presentToast();
+                            this.presentToast('signIn');
                             return this.getAuthSuccess(res);
                         },
                         (error) => {
@@ -59,6 +59,7 @@ export class AuthEffects {
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.register, 'POST', params).pipe(
                     map(
                         (res) => {
+                            this.presentToast('signUp');
                             return this.getAuthSuccess(res);
                         },
                         (error) => {
@@ -93,9 +94,10 @@ export class AuthEffects {
         return new GetAuthSuccess(user);
     }
 
-    async presentToast() {
+    async presentToast(logType: string) {
         const toast = await this.toastController.create({
-            message: this.translateService.instant('register.userSignUp'),
+            message: logType === 'signIn' ? this.translateService.instant('login.userSignIn') :
+                this.translateService.instant('register.userSignUp'),
             duration: 2000
         });
         toast.present();
