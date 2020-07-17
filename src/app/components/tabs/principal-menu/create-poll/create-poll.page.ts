@@ -1,22 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { BaseComponent } from '../../../../core/shared/base.component';
+import { IAppState } from '../../../../redux/app.state';
+import { UtilsService } from '../../../../core/shared/utils';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-create-poll',
   templateUrl: 'create-poll.page.html',
   styleUrls: ['create-poll.page.scss']
 })
-export class CreatePollPage implements OnInit {
+export class CreatePollPage extends BaseComponent implements OnInit {
   public formGroup: FormGroup;
 
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
     public toastController: ToastController,
-    public translateService: TranslateService) { }
+    public store: Store<IAppState>,
+    public utils: UtilsService,
+    public translateService: TranslateService
+  ) {
+    super(store, utils, translateService);
+  }
 
   public saveData(event) {
     console.log(event, 'guardado');

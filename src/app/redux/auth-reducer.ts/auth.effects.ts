@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
-import { ofType, Effect } from '@ngrx/effects';
-import { EAuthActions, GetAuth, GetAuthSuccess, GetRegister } from './auth.actions';
+import { ofType, Effect, createEffect } from '@ngrx/effects';
+import { EAuthActions, GetAuth, GetAuthSuccess, GetRegister, GetAuthError } from './auth.actions';
 import { Actions } from '@ngrx/effects';
 import { map } from 'rxjs/internal/operators/map';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { HttpService } from '../../core/services/http.service';
-import { Utils } from 'src/app/core/services/utils';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { GlobalConstants } from 'src/app/core/shared/constants/global.constants';
+import { UtilsService } from 'src/app/core/shared/utils';
+import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthEffects {
 
-    @Effect()
-    protected getAuth$ = this.actions$.pipe(
+    protected getAuth$ = createEffect(() => this.actions$.pipe(
         ofType<GetAuth>(EAuthActions.GetAuth),
         switchMap(
             (action) => {
@@ -26,9 +28,10 @@ export class AuthEffects {
                     password: action.payload && action.payload.password ? action.payload.password : null
                 };
 
-                return this.httpService.callBackEnd('environment.endpoints.login.auth', 'POST', params).pipe(
+                return this.httpService.callBackEnd(GlobalConstants.endpoint.login, 'POST', params).pipe(
                     map(
                         (res) => {
+                            this.presentToast();
                             return this.getAuthSuccess(res);
                         },
                         (error) => {
@@ -39,21 +42,21 @@ export class AuthEffects {
             }
         ),
         map(res => res)
-    );
+    ));
 
-    @Effect()
-    protected getRegister$ = this.actions$.pipe(
+    protected getRegister$ = createEffect(() => this.actions$.pipe(
         ofType<GetRegister>(EAuthActions.GetRegister),
         switchMap(
             (action) => {
                 const params = {
-                    username: action.payload && action.payload.username ? action.payload.username : null,
+                    lastName: action.payload && action.payload.lastName ? action.payload.lastName : null,
+                    firstName: action.payload && action.payload.firstName ? action.payload.firstName : null,
                     password: action.payload && action.payload.password ? action.payload.password : null,
                     email: action.payload && action.payload.email ? action.payload.email : null,
                     repeatPassword: action.payload && action.payload.repeatPassword ? action.payload.repeatPassword : null
                 };
 
-                return this.httpService.callBackEnd('environment.endpoints.login.register', 'POST', params).pipe(
+                return this.httpService.callBackEnd(GlobalConstants.endpoint.register, 'POST', params).pipe(
                     map(
                         (res) => {
                             return this.getAuthSuccess(res);
@@ -66,14 +69,16 @@ export class AuthEffects {
             }
         ),
         map(res => res)
-    );
+    ));
 
     constructor(
         private httpService: HttpService,
         private actions$: Actions,
-        private utils: Utils,
+        private utils: UtilsService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        public toastController: ToastController,
+        public translateService: TranslateService
     ) { }
 
     private getAuthSuccess(res: any) {
@@ -84,7 +89,15 @@ export class AuthEffects {
             email: decodeUser.email
         };
         this.authService.login(user);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/tabs']);
         return new GetAuthSuccess(user);
+    }
+
+    async presentToast() {
+        const toast = await this.toastController.create({
+            message: this.translateService.instant('register.userSignUp'),
+            duration: 2000
+        });
+        toast.present();
     }
 }

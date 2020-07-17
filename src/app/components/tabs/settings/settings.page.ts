@@ -2,21 +2,27 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActionSheetController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/core/shared/base.component';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../../redux/app.state';
+import { UtilsService } from '../../../core/shared/utils';
 
 @Component({
   selector: 'app-settings',
   templateUrl: 'settings.page.html',
   styleUrls: ['settings.page.scss']
 })
-export class SettingsPage {
-  public translateService: TranslateService;
+export class SettingsPage extends BaseComponent {
 
   constructor(
-    translate: TranslateService,
     public actionSheetController: ActionSheetController,
     public router: Router,
-    public toastController: ToastController) {
-    this.translateService = translate;
+    public toastController: ToastController,
+    public store: Store<IAppState>,
+    public utils: UtilsService,
+    public translateService: TranslateService,
+  ) {
+    super(store, utils, translateService);
     this.translateService.setDefaultLang('es');
     this.translateService.use('es');
   }

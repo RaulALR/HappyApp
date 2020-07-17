@@ -8,25 +8,30 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form [formGroup]="formGroup">
     <ion-item lines="full">
       <ion-label position="floating">{{'register.firstName' | translate}}</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">{{'register.lastName' | translate}}</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required formControlName="firstName"></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">{{'register.email' | translate}}</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="email" required formControlName="lastName"></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">{{'register.password' | translate}}</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" required formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">{{'register.repeatPassword' | translate}}</ion-label>
+      <ion-input type="password" required formControlName="repeatPassword"></ion-input>
     </ion-item>
 
     <ion-row>

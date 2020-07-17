@@ -1,17 +1,29 @@
 import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/core/shared/base.component';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../../redux/app.state';
+import { UtilsService } from '../../../core/shared/utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-principal-menu',
   templateUrl: 'principal-menu.page.html',
   styleUrls: ['principal-menu.page.scss']
 })
-export class PrincipalMenuPage {
+export class PrincipalMenuPage extends BaseComponent {
   public principalMenuConstants;
   public buttons: any;
 
-  constructor(public actionSheetController: ActionSheetController, private router: Router) {
+  constructor(
+    public actionSheetController: ActionSheetController,
+    private router: Router,
+    public store: Store<IAppState>,
+    public utils: UtilsService,
+    public translateService: TranslateService,
+  ) {
+    super(store, utils, translateService);
   }
   async openActionSheet() {
     const actionSheet = await this.actionSheetController.create({

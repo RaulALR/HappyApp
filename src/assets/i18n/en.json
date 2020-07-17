@@ -31,13 +31,14 @@
         "password": "Password",
         "signUp": "Sing up",
         "title": "Sing up",
-        "userSignUp": "Successful registered user"
+        "userSignUp": "Successful registered user",
+        "repeatPassword": "Repeat password"
     },
     "createPoll": {
         "title": "Create polls",
         "questions": "Questions",
         "users": "Users",
         "create": "Create",
-        "pollCreated":"Poll created"
+        "pollCreated": "Poll created"
     }
 }

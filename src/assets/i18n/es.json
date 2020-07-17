@@ -31,7 +31,8 @@
         "password": "Contraseña",
         "signUp": "Registar",
         "title": "Registro",
-        "userSignUp": "Usuario registrado con éxito"
+        "userSignUp": "Usuario registrado con éxito",
+        "repeatPassword": "Repita contraseña"
     },
     "createPoll": {
         "title": "Creación de encuesta",

@@ -17,9 +17,10 @@ import { appReducers } from './redux/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './redux/auth-reducer.ts/auth.effects';
 import { HttpService } from './core/services/http.service';
-import { Utils } from './core/services/utils';
 import { AuthService } from './core/services/auth.service';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { UtilsService } from './core/shared/utils';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,6 +32,8 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument(),
@@ -48,7 +51,7 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     HttpService,
-    Utils,
+    UtilsService,
     AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
