@@ -20,6 +20,14 @@ const routes: Routes = [
         loadChildren: () => import('./principal-menu/create-poll/create-poll.module').then(m => m.CreatePollModule)
       },
       {
+        path: 'create-group',
+        loadChildren: () => import('./principal-menu/create-group/create-group.module').then(m => m.CreateGroupModule)
+      },
+      {
+        path: 'view-groups',
+        loadChildren: () => import('./principal-menu/view-groups/view-groups.module').then(m => m.ViewGroupsModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/principal-menu',
         pathMatch: 'full'

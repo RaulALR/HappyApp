@@ -21,6 +21,7 @@ import { AuthService } from './core/services/auth.service';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { UtilsService } from './core/shared/utils';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GroupEffects } from './redux/group-reducer.ts/group.effects';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,7 +36,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, GroupEffects]),
     StoreDevtoolsModule.instrument(),
     TranslateModule.forRoot({
       defaultLanguage: 'es',

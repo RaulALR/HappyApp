@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [icon]="buttonIcon" defaultHref="/tabs/principal-menu">
+      </ion-back-button>
+      <ion-title>
+        {{'group.titleView' | translate}}
+      </ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="groupsData">
+    <ng-container *ngFor="let item of groupsData">
+      <ion-item (click)="navigateToGroup(item)">
+        <ion-label>{{item.groupName}}</ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

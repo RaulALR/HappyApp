@@ -1,6 +1,7 @@
 export const GlobalConstants = {
     endpoint: {
         login: 'login',
-        register: 'register'
+        register: 'register',
+        group: 'group'
     }
 };

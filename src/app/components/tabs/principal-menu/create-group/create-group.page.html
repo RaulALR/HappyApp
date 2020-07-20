@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [icon]="buttonIcon" defaultHref="/tabs/principal-menu">
+      </ion-back-button>
+      <ion-title size="large">{{'group.title' | translate}}</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="formGroup">
+    <ion-item lines="full">
+      <ion-label position="floating">{{'group.groupName' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="groupName"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">{{'group.owner' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="owner"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">{{'group.repondents' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="repondents"></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" (click)="createGroup()" expand="block">{{'commons.create' | translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

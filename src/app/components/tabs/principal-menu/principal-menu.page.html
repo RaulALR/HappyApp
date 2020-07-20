@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      {{'principalTitle' | translate}}
+      {{'principal.principalTitle' | translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,14 +9,20 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">{{'principalTitle' | translate}}</ion-title>
+      <ion-title size="large">{{'principal.principalTitle' | translate}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-button expand="block" (click)="navigateTo('/tabs/create-poll')">
-    {{'createPolls' | translate}}
+    {{'principal.createPolls' | translate}}
   </ion-button>
   <ion-button expand="block">
-    {{'showPolls' | translate}}
+    {{'principal.showPolls' | translate}}
+  </ion-button>
+  <ion-button expand="block" (click)="navigateTo('/tabs/create-group')">
+    {{'principal.createGroup' | translate}}
+  </ion-button>
+  <ion-button expand="block" (click)="navigateTo('/tabs/view-groups')">
+    {{'principal.viewGroups' | translate}}
   </ion-button>
 </ion-content>

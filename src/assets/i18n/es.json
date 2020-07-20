@@ -1,15 +1,24 @@
 {
-    "principalTitle": "Menú principal",
-    "createPolls": "Crear encuesta",
-    "showPolls": "Mostrar encuestas",
-    "settingsTitle": "Ajustes",
-    "selectLenguage": "Selección de lenguaje",
-    "disconnect": "Cerrar sesión",
+    "commons": {
+        "create": "Crear",
+        "save": "Guardar",
+        "delete": "Eliminar"
+    },
+    "principal": {
+        "principalTitle": "Menú principal",
+        "createPolls": "Crear encuesta",
+        "showPolls": "Mostrar encuestas",
+        "createGroup": "Crear grupo",
+        "viewGroups": "Ver mis grupos"
+    },
     "settings": {
         "languages": "Lenguajes",
         "english": "Inglés",
         "spanish": "Español",
-        "closeSessionToast": "Sesión cerrada"
+        "closeSessionToast": "Sesión cerrada",
+        "settingsTitle": "Ajustes",
+        "selectLenguage": "Selección de lenguaje",
+        "disconnect": "Cerrar sesión"
     },
     "login-register": {
         "already": "¿Ya tiene usuario?",
@@ -41,5 +50,13 @@
         "users": "Usuarios",
         "create": "Crear",
         "pollCreated": "Encuesta creada"
+    },
+    "group": {
+        "owner": "Anfitrión",
+        "repondents": "Encuestados",
+        "title": "Crear grupo",
+        "groupName": "Nombre del grupo",
+        "groupCreated": "Grupo creado",
+        "titleView": "Listado de grupos"
     }
 }

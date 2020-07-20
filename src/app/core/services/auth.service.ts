@@ -18,11 +18,13 @@ export class AuthService {
 
     public login(user) {
         localStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('user', JSON.stringify(user));
         this.currentUserSubject.next(user);
     }
 
     public logout() {
         localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
         this.currentUserSubject.next(null);
     }
 }
