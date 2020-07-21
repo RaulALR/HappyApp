@@ -3,31 +3,32 @@
     <ion-buttons slot="start">
       <ion-back-button [icon]="buttonIcon" defaultHref="/tabs/principal-menu">
       </ion-back-button>
+      <ion-title size="large">{{(isUpdate ? 'createPoll.titleUpdate' : 'createPoll.title') | translate}}</ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{'createPoll.title' | translate}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <form [formGroup]="formGroup" (ngSubmit)="saveData($event)">
-    <ion-list>
-      <div formGroupName="questions">
-        <ion-item>
-          <ion-label position="floating">{{'createPoll.questions' | translate}}</ion-label>
-          <ion-input formControlName="question" type="text"></ion-input>
-        </ion-item>
-      </div>
-      <ion-item>
-        <ion-label position="floating">{{'createPoll.users' | translate}}</ion-label>
-        <ion-input formControlName="users" type="text"></ion-input>
-      </ion-item>
-    </ion-list>
+  <form [formGroup]="formGroup" (ngSubmit)="saveData()">
+    <ion-item lines="full">
+      <ion-label position="floating">{{'createPoll.pollName' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="pollName"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">{{'createPoll.groupPoll' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="groupPoll"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">{{'createPoll.questions' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="questions"></ion-input>
+    </ion-item>
+
     <div padding>
-      <ion-button block type="submit" [disabled]="!formGroup.valid">{{'createPoll.create' | translate}}</ion-button>
+      <ion-button block type="submit" [disabled]="!formGroup.valid">
+        {{'createPoll.create' | translate}}
+      </ion-button>
     </div>
   </form>
 </ion-content>

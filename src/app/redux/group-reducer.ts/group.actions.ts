@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { IError } from 'src/app/core/models/error.model';
-import { IGroupData, IGetGroup, IGetGroups, } from '../redux-models/IGroup.model';
+import { IGroupData, IGetGroup, IGetGroups, IUpdateGroupData, } from '../redux-models/IGroup.model';
 import { IRegisterParams } from '../redux-models/IRegister.models';
 
 export enum EGroupActions {
@@ -31,12 +31,12 @@ export class CreateGroup implements Action {
 
 export class UpdateGroup implements Action {
     public readonly type = EGroupActions.UpdateGroup;
-    constructor(public payload: IGroupData) { }
+    constructor(public payload: IUpdateGroupData) { }
 }
 
 export class DeleteGroup implements Action {
     public readonly type = EGroupActions.DeleteGroup;
-    constructor(public payload: IGroupData) { }
+    constructor(public payload: IGetGroup) { }
 }
 
 export class GetGroupSuccess implements Action {
@@ -54,4 +54,4 @@ export class GetRegister implements Action {
     constructor(public payload: IRegisterParams) { }
 }
 
-export type GroupActions = GetGroups | GetGroup | CreateGroup | GetGroupSuccess | GetGroupError | GetRegister;
+export type GroupActions = GetGroups | GetGroup | CreateGroup | GetGroupSuccess | GetGroupError | GetRegister | UpdateGroup | DeleteGroup;

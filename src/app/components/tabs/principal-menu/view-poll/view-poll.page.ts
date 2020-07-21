@@ -7,17 +7,17 @@ import { BaseComponent } from '../../../../core/shared/base.component';
 import { IAppState } from '../../../../redux/app.state';
 import { UtilsService } from '../../../../core/shared/utils';
 import { Store, select } from '@ngrx/store';
-import { selectGroupList } from '../../../../redux/group-reducer.ts/group.selector';
-import { IGroupData, IGetGroups } from '../../../../redux/redux-models/IGroup.model';
-import { GetGroups, GetGroup } from '../../../../redux/group-reducer.ts/group.actions';
+import { selectPollList } from '../../../../redux/poll-reducer.ts/poll.selector';
+import { IPollData, IGetPolls } from '../../../../redux/redux-models/IPoll.model';
+import { GetPolls, GetPoll } from '../../../../redux/poll-reducer.ts/poll.actions';
 
 @Component({
-  selector: 'app-view-groups',
-  templateUrl: 'view-groups.page.html',
-  styleUrls: ['view-groups.page.scss']
+  selector: 'app-view-poll',
+  templateUrl: 'view-poll.page.html',
+  styleUrls: ['view-poll.page.scss']
 })
-export class ViewGroupsPage extends BaseComponent implements OnInit {
-  public groupsData: IGroupData[];
+export class ViewPollsPage extends BaseComponent implements OnInit {
+  public pollsData: IPollData[];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -31,34 +31,35 @@ export class ViewGroupsPage extends BaseComponent implements OnInit {
     super(store, utils, translateService);
   }
 
-  public navigateToGroup(item) {
-    this.store.dispatch(new GetGroup({ _id: item._id }));
+  public navigateToPoll(item) {
+    this.store.dispatch(new GetPoll({ _id: item._id }));
   }
 
-  private getGroups() {
-    const params: IGetGroups = {
-      owner: JSON.parse(sessionStorage.user).email
+  private getPolls() {
+    const params: IGetPolls = {
+      user: JSON.parse(sessionStorage.user).email
     };
-    this.store.dispatch(new GetGroups(params));
+    this.store.dispatch(new GetPolls(params));
   }
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: this.translateService.instant('groups.groupCreated'),
+      message: this.translateService.instant('viewPolls.pollCreated'),
       duration: 2000
     });
     toast.present();
   }
 
   ngOnInit() {
-    this.store.pipe(select(selectGroupList)).subscribe((res) => {
-      if (res.length > 0 && res[0].owner) {
-        this.groupsData = res;
-      }
+    this.store.pipe(select(selectPollList)).subscribe((res) => {
+      this.pollsData = res;
+      // if (res.length > 0 && res[0].owner) {
+      //   this.pollsData = res;
+      // }
     });
 
     this.activatedRoute.url.subscribe((res) => {
-      this.getGroups();
+      this.getPolls();
     });
   }
 }

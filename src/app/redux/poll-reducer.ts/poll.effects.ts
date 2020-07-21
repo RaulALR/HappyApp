@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ofType, createEffect } from '@ngrx/effects';
-import { EGroupActions, GetGroup, GetGroupSuccess, GetRegister, GetGroupError, GetGroups, CreateGroup, UpdateGroup, DeleteGroup } from './group.actions';
+import { EPollActions, GetPoll, GetPollSuccess, GetPolls, CreatePoll, UpdatePoll, DeletePoll } from './poll.actions';
 import { Actions } from '@ngrx/effects';
 import { map } from 'rxjs/internal/operators/map';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
@@ -16,19 +16,19 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable({
     providedIn: 'root'
 })
-export class GroupEffects {
+export class PollEffects {
 
-    protected getGroups$ = createEffect(() => this.actions$.pipe(
-        ofType<GetGroups>(EGroupActions.GetGroups),
+    protected getPolls$ = createEffect(() => this.actions$.pipe(
+        ofType<GetPolls>(EPollActions.GetPolls),
         switchMap(
             (action) => {
                 const params = {
-                    owner: action.payload && action.payload.owner ? action.payload.owner : null
+                    user: action.payload && action.payload.user ? action.payload.user : null
                 };
-                return this.httpService.callBackEnd(GlobalConstants.endpoint.group, 'GET', params).pipe(
+                return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'GET', params).pipe(
                     map(
                         (res) => {
-                            return new GetGroupSuccess(res.data);
+                            return new GetPollSuccess(res.data);
                         },
                         (error) => {
                             return this.utils.showErrorToast(error);
@@ -40,16 +40,16 @@ export class GroupEffects {
         map(res => res)
     ));
 
-    protected getGroup$ = createEffect(() => this.actions$.pipe(
-        ofType<GetGroup>(EGroupActions.GetGroup),
+    protected getPoll$ = createEffect(() => this.actions$.pipe(
+        ofType<GetPoll>(EPollActions.GetPoll),
         switchMap(
             (action) => {
-                return this.httpService.callBackEnd(`${GlobalConstants.endpoint.group}/${action.payload._id}`, 'GET').pipe(
+                return this.httpService.callBackEnd(`${GlobalConstants.endpoint.poll}/${action.payload._id}`, 'GET').pipe(
                     map(
                         (res) => {
                             const navigationExtras: NavigationExtras = { state: { data: { _id: action.payload._id } } };
-                            this.router.navigate(['/tabs/create-group'], navigationExtras);
-                            return new GetGroupSuccess([res.data]);
+                            this.router.navigate(['/tabs/create-poll'], navigationExtras);
+                            return new GetPollSuccess([res.data]);
                         },
                         (error) => {
                             return this.utils.showErrorToast(error);
@@ -61,22 +61,21 @@ export class GroupEffects {
         map(res => res)
     ));
 
-    protected createGroup$ = createEffect(() => this.actions$.pipe(
-        ofType<CreateGroup>(EGroupActions.CreateGroup),
+    protected createPoll$ = createEffect(() => this.actions$.pipe(
+        ofType<CreatePoll>(EPollActions.CreatePoll),
         switchMap(
             (action) => {
                 const params = {
-                    groupName: action.payload && action.payload.groupName ? action.payload.groupName : null,
-                    owner: action.payload && action.payload.owner ? action.payload.owner : null,
-                    repondents: action.payload && action.payload.repondents ? action.payload.repondents : null
+                    pollName: action.payload && action.payload.pollName ? action.payload.pollName : null,
+                    groupPoll: action.payload && action.payload.groupPoll ? action.payload.groupPoll : null,
+                    questions: action.payload && action.payload.questions ? action.payload.questions : null
                 };
-
-                return this.httpService.callBackEnd(GlobalConstants.endpoint.group, 'POST', params).pipe(
+                return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'POST', params).pipe(
                     map(
                         (res) => {
-                            this.router.navigate(['/tabs/view-groups']);
-                            this.presentToast('groupCreated');
-                            return new GetGroupSuccess(res);
+                            this.router.navigate(['/tabs/view-polls']);
+                            this.presentToast('pollCreated');
+                            return new GetPollSuccess(res);
                         },
                         (error) => {
                             return this.utils.showErrorToast(error);
@@ -88,23 +87,23 @@ export class GroupEffects {
         map(res => res)
     ));
 
-    protected updateGroup$ = createEffect(() => this.actions$.pipe(
-        ofType<UpdateGroup>(EGroupActions.UpdateGroup),
+    protected updatePoll$ = createEffect(() => this.actions$.pipe(
+        ofType<UpdatePoll>(EPollActions.UpdatePoll),
         switchMap(
             (action) => {
                 const params = {
                     _id: action.payload && action.payload._id ? action.payload._id : null,
-                    groupName: action.payload && action.payload.groupName ? action.payload.groupName : null,
-                    owner: action.payload && action.payload.owner ? action.payload.owner : null,
-                    repondents: action.payload && action.payload.repondents ? action.payload.repondents : null
+                    pollName: action.payload && action.payload.pollName ? action.payload.pollName : null,
+                    groupPoll: action.payload && action.payload.groupPoll ? action.payload.groupPoll : null,
+                    questions: action.payload && action.payload.questions ? action.payload.questions : null
                 };
 
-                return this.httpService.callBackEnd(GlobalConstants.endpoint.group, 'PUT', params).pipe(
+                return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'PUT', params).pipe(
                     map(
                         (res) => {
-                            this.router.navigate(['/tabs/view-groups']);
-                            this.presentToast('groupUpdated');
-                            return new GetGroupSuccess(res);
+                            this.router.navigate(['/tabs/view-polls']);
+                            this.presentToast('pollUpdated');
+                            return new GetPollSuccess(res);
                         },
                         (error) => {
                             return this.utils.showErrorToast(error);
@@ -116,16 +115,16 @@ export class GroupEffects {
         map(res => res)
     ));
 
-    protected deleteGroup$ = createEffect(() => this.actions$.pipe(
-        ofType<DeleteGroup>(EGroupActions.DeleteGroup),
+    protected deletePoll$ = createEffect(() => this.actions$.pipe(
+        ofType<DeletePoll>(EPollActions.DeletePoll),
         switchMap(
             (action) => {
-                return this.httpService.callBackEnd(GlobalConstants.endpoint.group, 'DELETE', { _id: action.payload._id }).pipe(
+                return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'DELETE', { _id: action.payload._id }).pipe(
                     map(
                         (res) => {
-                            this.router.navigate(['/tabs/view-groups']);
-                            this.presentToast('groupDeleted');
-                            return new GetGroupSuccess(res);
+                            this.router.navigate(['/tabs/view-polls']);
+                            this.presentToast('pollDeleted');
+                            return new GetPollSuccess(res);
                         },
                         (error) => {
                             return this.utils.showErrorToast(error);
@@ -148,7 +147,7 @@ export class GroupEffects {
 
     async presentToast(logType: string) {
         const toast = await this.toastController.create({
-            message: this.translateService.instant(`group.${logType}`),
+            message: this.translateService.instant(`createPoll.${logType}`),
             duration: 2000
         });
         toast.present();

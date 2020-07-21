@@ -19,6 +19,8 @@ export class HttpService {
                 return this.http.put<any>(url, { params, headers });
             case 'PATCH':
                 return this.http.patch<any>(url, { params, headers });
+            case 'DELETE':
+                return this.http.delete<any>(url, { params, headers });
         }
     }
 }

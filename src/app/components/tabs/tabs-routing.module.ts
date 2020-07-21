@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('./principal-menu/view-groups/view-groups.module').then(m => m.ViewGroupsModule)
       },
       {
+        path: 'view-polls',
+        loadChildren: () => import('./principal-menu/view-poll/view-poll.module').then(m => m.ViewPollsModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/principal-menu',
         pathMatch: 'full'

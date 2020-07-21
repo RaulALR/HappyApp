@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [icon]="buttonIcon" defaultHref="/tabs/principal-menu">
+      </ion-back-button>
+      <ion-title>
+        {{'viewPoll.title' | translate}}
+      </ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="pollsData">
+    <ng-container *ngFor="let item of pollsData">
+      <ion-item (click)="navigateToPoll(item)">
+        <ion-label>{{item.pollName}}</ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

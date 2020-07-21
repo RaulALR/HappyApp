@@ -1,6 +1,7 @@
 {
     "commons": {
         "create": "Create",
+        "update": "Update",
         "save": "Save",
         "delete": "Delete"
     },
@@ -47,9 +48,15 @@
     "createPoll": {
         "title": "Create polls",
         "questions": "Questions",
-        "users": "Users",
+        "pollName": "Poll name",
         "create": "Create",
-        "pollCreated": "Poll created"
+        "groupPoll": "Group",
+        "pollCreated": "Poll created",
+        "titleUpdate": "Update poll",
+        "pollUpdated": "Poll updated"
+    },
+    "viewPoll": {
+        "title": "View poll list"
     },
     "group": {
         "owner": "Owner",
@@ -57,6 +64,9 @@
         "title": "Create group",
         "groupName": "Group name",
         "groupCreated": "Group created",
-        "titleView": "View groups"
+        "titleView": "View groups",
+        "groupUpdated": "Group updated",
+        "titleUpdate": "Update group",
+        "groupDeleted": "Group deleted"
     }
 }

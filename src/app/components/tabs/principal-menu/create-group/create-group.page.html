@@ -1,9 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [icon]="buttonIcon" defaultHref="/tabs/principal-menu">
+      <ion-back-button [icon]="buttonIcon" defaultHref="{{selectBackUrl()}}">
       </ion-back-button>
-      <ion-title size="large">{{'group.title' | translate}}</ion-title>
+      <ion-title size="large">{{(isUpdate ? 'group.titleUpdate' : 'group.title') | translate}}</ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -27,7 +27,11 @@
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" (click)="createGroup()" expand="block">{{'commons.create' | translate}}
+        <ion-button type="submit" color="danger" (click)="createGroup()">
+          {{(isUpdate ? 'commons.update' : 'commons.create') | translate}}
+        </ion-button>
+        <ion-button type="submit" color="danger" (click)="deleteGroup()" disabled="{{getDisableDelete()}}">
+          {{('commons.delete') | translate}}
         </ion-button>
       </ion-col>
     </ion-row>

@@ -1,6 +1,6 @@
-export const groupForms = [
+export const pollForms = [
     {
-        name: 'groupName',
+        name: 'pollName',
         // validators: ['required'],
         // errors: [
         //     {
@@ -10,7 +10,7 @@ export const groupForms = [
         // ]
     },
     {
-        name: 'owner',
+        name: 'groupPoll',
         // validators: ['required'],
         // errors: [
         //     {
@@ -20,7 +20,7 @@ export const groupForms = [
         // ]
     },
     {
-        name: 'repondents',
+        name: 'questions',
         // validators: ['required'],
         // errors: [
         //     {

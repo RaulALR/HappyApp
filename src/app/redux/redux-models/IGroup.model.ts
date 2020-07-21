@@ -11,3 +11,10 @@ export interface IGroupData {
     owner: string;
     repondents: string;
 }
+
+export interface IUpdateGroupData {
+    _id: string;
+    groupName: string;
+    owner: string;
+    repondents: string;
+}
