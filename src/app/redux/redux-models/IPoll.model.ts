@@ -9,12 +9,12 @@ export interface IGetPoll {
 export interface IPollData {
     pollName: string;
     groupPoll: string;
-    questions: string;
+    questions: string[];
 }
 
 export interface IUpdatePollData {
     _id: string;
     pollName: string;
     groupPoll: string;
-    questions: string;
+    questions: string[];
 }

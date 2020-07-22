@@ -52,10 +52,9 @@ export class ViewPollsPage extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.store.pipe(select(selectPollList)).subscribe((res) => {
-      this.pollsData = res;
-      // if (res.length > 0 && res[0].owner) {
-      //   this.pollsData = res;
-      // }
+      if (Array.isArray(res)) {
+        this.pollsData = res;
+      }
     });
 
     this.activatedRoute.url.subscribe((res) => {

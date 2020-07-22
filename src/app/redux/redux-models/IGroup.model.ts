@@ -9,12 +9,12 @@ export interface IGetGroup {
 export interface IGroupData {
     groupName: string;
     owner: string;
-    repondents: string;
+    repondents: string[];
 }
 
 export interface IUpdateGroupData {
     _id: string;
     groupName: string;
     owner: string;
-    repondents: string;
+    repondents: string[];
 }

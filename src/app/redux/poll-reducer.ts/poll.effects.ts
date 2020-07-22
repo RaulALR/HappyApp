@@ -119,6 +119,7 @@ export class PollEffects {
         ofType<DeletePoll>(EPollActions.DeletePoll),
         switchMap(
             (action) => {
+                debugger
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'DELETE', { _id: action.payload._id }).pipe(
                     map(
                         (res) => {

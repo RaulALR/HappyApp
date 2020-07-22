@@ -20,6 +20,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
   public formGroup: FormGroup;
   public isUpdate = false;
   public groupId: string;
+  public repondentsData = [];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -40,7 +41,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
       _id: this.groupId,
       groupName: this.formGroup.get('groupName').value ? this.formGroup.get('groupName').value : null,
       owner: this.formGroup.get('owner').value ? this.formGroup.get('owner').value : null,
-      repondents: this.formGroup.get('repondents').value ? this.formGroup.get('repondents').value : null
+      repondents: this.repondentsData || null
     };
 
     if (this.isUpdate) {
@@ -49,6 +50,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
       delete params._id;
       this.store.dispatch(new CreateGroup(params));
     }
+    this.repondentsData = [];
   }
 
   public deleteGroup() {
@@ -65,7 +67,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
   private updateForm(data) {
     this.formGroup.get('groupName').setValue(data.groupName);
     this.formGroup.get('owner').setValue(data.owner);
-    this.formGroup.get('repondents').setValue(data.repondents);
+    this.repondentsData = data.repondents;
   }
 
   public selectBackUrl() {
@@ -74,6 +76,17 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
     } else {
       return 'tabs/principal-menu';
     }
+  }
+
+  public addRepondent() {
+    if (this.formGroup.get('repondents').value) {
+      this.repondentsData.push(this.formGroup.get('repondents').value);
+      this.formGroup.get('repondents').setValue('');
+    }
+  }
+
+  public deleteRepondent(index) {
+    this.repondentsData.splice(index, 1);
   }
 
   async presentToast() {

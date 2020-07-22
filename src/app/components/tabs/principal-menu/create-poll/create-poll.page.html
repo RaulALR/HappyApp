@@ -17,17 +17,35 @@
 
     <ion-item lines="full">
       <ion-label position="floating">{{'createPoll.groupPoll' | translate}}</ion-label>
-      <ion-input type="text" required formControlName="groupPoll"></ion-input>
+      <ion-select okText="{{'commons.select' | translate}}" cancelText="{{'commons.cancel' | translate}}" required
+        formControlName="groupPoll" [compareWith]="compareWithGroup">
+        <ion-select-option value=""></ion-select-option>
+        <ion-select-option value="{{group.groupName}}" *ngFor="let group of groupData">{{group.groupName}}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">{{'createPoll.questions' | translate}}</ion-label>
-      <ion-input type="text" required formControlName="questions"></ion-input>
+      <ion-input type="text" formControlName="questions"></ion-input>
+      <ion-icon name="add-outline" slot="end" (click)="addQuestion()"></ion-icon>
     </ion-item>
 
-    <div padding>
+    <ion-list *ngIf="questionData">
+      <ng-container *ngFor="let item of questionData; let i = index">
+        <ion-item>
+          <ion-label>{{item}}</ion-label>
+          <ion-icon name="close-outline" slot="end" (click)="deleteQuestion(i)"></ion-icon>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+    <div padding *ngIf="showButtons()">
       <ion-button block type="submit" [disabled]="!formGroup.valid">
-        {{'createPoll.create' | translate}}
+        {{(isUpdate ? 'commons.update' : 'commons.create') | translate}}
+      </ion-button>
+      <ion-button type="submit" color="danger" (click)="deletePoll()" disabled="{{getDisableDelete()}}">
+        {{('commons.delete') | translate}}
       </ion-button>
     </div>
   </form>

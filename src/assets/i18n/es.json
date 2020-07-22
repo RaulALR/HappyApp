@@ -3,7 +3,9 @@
         "create": "Crear",
         "update": "Actualizar",
         "save": "Guardar",
-        "delete": "Eliminar"
+        "delete": "Eliminar",
+        "select": "Seleccionar",
+        "cancel": "Cancelar"
     },
     "principal": {
         "principalTitle": "Menú principal",
@@ -56,7 +58,8 @@
         "pollUpdated": "Encuesta actualizada"
     },
     "viewPoll": {
-        "title": "Lista de encuestas"
+        "title": "Lista de encuestas",
+        "pollDeleted": "Encuesta eliminada"
     },
     "group": {
         "owner": "Anfitrión",
