@@ -59,7 +59,8 @@
     },
     "viewPoll": {
         "title": "Lista de encuestas",
-        "pollDeleted": "Encuesta eliminada"
+        "pollDeleted": "Encuesta eliminada",
+        "doPoll": "Encuesta"
     },
     "group": {
         "owner": "Anfitrión",

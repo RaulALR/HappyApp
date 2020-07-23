@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [icon]="buttonIcon" defaultHref="/tabs/principal-menu">
+      </ion-back-button>
+      <ion-title>
+        {{'viewPoll.doPoll' | translate}}
+      </ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="pollData">
+    <ng-container *ngFor="let item of pollData.questions">
+      <ion-item>
+        <ion-text color="primary" expand="block">
+          <h1>{{item}}</h1>
+        </ion-text>
+        <ion-icon name="logo-octocat"></ion-icon>
+        <ion-icon name="logo-ionitron"></ion-icon>
+        <ion-icon name="logo-ionitron"></ion-icon>
+        <ion-icon name="logo-ionitron"></ion-icon>
+        <ion-icon name="logo-ionitron"></ion-icon>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

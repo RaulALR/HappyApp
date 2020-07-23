@@ -28,5 +28,15 @@ export const groupForms = [
         //         msg: 'Last name is required'
         //     }
         // ]
+    },
+    {
+        name: 'searchText',
+        // validators: ['required'],
+        // errors: [
+        //     {
+        //         error: 'required',
+        //         msg: 'Last name is required'
+        //     }
+        // ]
     }
 ];

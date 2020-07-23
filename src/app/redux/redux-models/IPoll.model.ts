@@ -10,6 +10,7 @@ export interface IPollData {
     pollName: string;
     groupPoll: string;
     questions: string[];
+    owner: string;
 }
 
 export interface IUpdatePollData {
@@ -17,4 +18,5 @@ export interface IUpdatePollData {
     pollName: string;
     groupPoll: string;
     questions: string[];
+    owner: string;
 }

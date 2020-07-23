@@ -44,7 +44,8 @@ export class CreatePollPage extends BaseComponent implements OnInit {
       _id: this.pollId,
       pollName: this.formGroup.get('pollName').value ? this.formGroup.get('pollName').value : null,
       groupPoll: this.formGroup.get('groupPoll').value ? this.formGroup.get('groupPoll').value : null,
-      questions: this.questionData || null
+      questions: this.questionData || null,
+      owner: JSON.parse(sessionStorage.user).email
     };
 
     if (this.isUpdate) {
@@ -53,7 +54,6 @@ export class CreatePollPage extends BaseComponent implements OnInit {
       delete params._id;
       this.store.dispatch(new CreatePoll(params));
     }
-
   }
 
   public pollCreated() {
@@ -70,7 +70,7 @@ export class CreatePollPage extends BaseComponent implements OnInit {
           this.formGroup.get('groupPoll').enable();
           state = false;
         }
-      })
+      });
     }
     return state;
   }

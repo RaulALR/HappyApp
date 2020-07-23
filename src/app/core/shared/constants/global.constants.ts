@@ -3,6 +3,7 @@ export const GlobalConstants = {
         login: 'login',
         register: 'register',
         group: 'group',
-        poll: 'poll'
+        poll: 'poll',
+        users: 'users'
     }
 };

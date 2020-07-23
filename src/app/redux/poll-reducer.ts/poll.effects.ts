@@ -48,7 +48,11 @@ export class PollEffects {
                     map(
                         (res) => {
                             const navigationExtras: NavigationExtras = { state: { data: { _id: action.payload._id } } };
-                            this.router.navigate(['/tabs/create-poll'], navigationExtras);
+                            if (res.data.owner === JSON.parse(sessionStorage.user).email) {
+                                this.router.navigate(['/tabs/create-poll'], navigationExtras);
+                            } else {
+                                this.router.navigate(['/tabs/do-poll'], navigationExtras);
+                            }
                             return new GetPollSuccess([res.data]);
                         },
                         (error) => {
@@ -68,7 +72,8 @@ export class PollEffects {
                 const params = {
                     pollName: action.payload && action.payload.pollName ? action.payload.pollName : null,
                     groupPoll: action.payload && action.payload.groupPoll ? action.payload.groupPoll : null,
-                    questions: action.payload && action.payload.questions ? action.payload.questions : null
+                    questions: action.payload && action.payload.questions ? action.payload.questions : null,
+                    owner: action.payload && action.payload.owner ? action.payload.owner : null
                 };
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'POST', params).pipe(
                     map(
@@ -95,7 +100,8 @@ export class PollEffects {
                     _id: action.payload && action.payload._id ? action.payload._id : null,
                     pollName: action.payload && action.payload.pollName ? action.payload.pollName : null,
                     groupPoll: action.payload && action.payload.groupPoll ? action.payload.groupPoll : null,
-                    questions: action.payload && action.payload.questions ? action.payload.questions : null
+                    questions: action.payload && action.payload.questions ? action.payload.questions : null,
+                    owner: action.payload && action.payload.owner ? action.payload.owner : null
                 };
 
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'PUT', params).pipe(
@@ -119,7 +125,6 @@ export class PollEffects {
         ofType<DeletePoll>(EPollActions.DeletePoll),
         switchMap(
             (action) => {
-                debugger
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'DELETE', { _id: action.payload._id }).pipe(
                     map(
                         (res) => {

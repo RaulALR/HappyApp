@@ -20,11 +20,16 @@
       <ion-input type="text" required formControlName="owner"></ion-input>
     </ion-item>
 
-    <ion-item lines="full">
-      <ion-label position="floating">{{'group.repondents' | translate}}</ion-label>
-      <ion-input type="text" formControlName="repondents"></ion-input>
-      <ion-icon name="add-outline" slot="end" (click)="addRepondent()"></ion-icon>
-    </ion-item>
+    <div class="autocomplete">
+      <ion-searchbar formControlName="searchText" (ionFocus)="isFocused = true" (ionChange)="search()"
+        (ionBlur)="setFocus()" debounce=100 placeholder="{{'group.repondents' | translate}}">
+      </ion-searchbar>
+      <ion-list *ngIf="isFocused">
+        <ion-item *ngFor="let item of searchData" (click)="addRepondent(item)">
+          {{item.email}}
+        </ion-item>
+      </ion-list>
+    </div>
 
     <ion-card *ngIf="repondentsData && repondentsData.length > 0">
       <ng-container *ngFor="let item of repondentsData; let i = index">
@@ -34,17 +39,6 @@
         </ion-chip>
       </ng-container>
     </ion-card>
-
-    <div class="autocomplete">
-      <ion-searchbar [(ngModel)]="searchText" (ionFocus)="addFocus()" (ionInput)="search()" (ionBlur)="removeFocus()"
-        debounce=500>
-      </ion-searchbar>
-      <ion-list>
-        <ion-item *ngFor="let res of refRicerca" (click)="addNote(res)">
-          {{res}}
-        </ion-item>
-      </ion-list>
-    </div>
 
     <ion-row>
       <ion-col>

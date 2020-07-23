@@ -11,17 +11,17 @@
   <form [formGroup]="formGroup">
     <ion-item lines="full">
       <ion-label position="floating">{{'register.firstName' | translate}}</ion-label>
-      <ion-input type="text" required formControlName="email"></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">{{'register.lastName' | translate}}</ion-label>
       <ion-input type="text" required formControlName="firstName"></ion-input>
     </ion-item>
 
     <ion-item lines="full">
+      <ion-label position="floating">{{'register.lastName' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
       <ion-label position="floating">{{'register.email' | translate}}</ion-label>
-      <ion-input type="email" required formControlName="lastName"></ion-input>
+      <ion-input type="email" required formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item lines="full">

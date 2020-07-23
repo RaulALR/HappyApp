@@ -59,7 +59,8 @@
     },
     "viewPoll": {
         "title": "View poll list",
-        "pollDeleted": "Poll deleted"
+        "pollDeleted": "Poll deleted",
+        "doPoll": "Poll"
     },
     "group": {
         "owner": "Owner",

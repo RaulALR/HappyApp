@@ -9,7 +9,9 @@ import { UtilsService } from '../../../../core/shared/utils';
 import { Store, select } from '@ngrx/store';
 import { groupForms } from './create-group.forms';
 import { CreateGroup, UpdateGroup, GetGroup, DeleteGroup } from 'src/app/redux/group-reducer.ts/group.actions';
-import { selectGroupList } from 'src/app/redux/group-reducer.ts/group.selector';
+import { selectGroupList } from '../../../../redux/group-reducer.ts/group.selector';
+import { selectUsersList } from '../../../../redux/user-reducer.ts/user.selector';
+import { GetUsers } from 'src/app/redux/user-reducer.ts/user.actions';
 
 @Component({
   selector: 'app-create-group',
@@ -21,6 +23,9 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
   public isUpdate = false;
   public groupId: string;
   public repondentsData = [];
+  public searchText = '';
+  public searchData = [];
+  public isFocused = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -48,6 +53,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
       this.store.dispatch(new UpdateGroup(params));
     } else {
       delete params._id;
+      params.repondents.push(JSON.parse(sessionStorage.user).email);
       this.store.dispatch(new CreateGroup(params));
     }
     this.repondentsData = [];
@@ -78,26 +84,31 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
     }
   }
 
-  public addRepondent() {
-    if (this.formGroup.get('repondents').value) {
-      this.repondentsData.push(this.formGroup.get('repondents').value);
-      this.formGroup.get('repondents').setValue('');
+  public addRepondent(item) {
+    if (item) {
+      this.repondentsData.push(item.email);
     }
+  }
+
+  public setFocus() {
+    setTimeout(() => {
+      this.isFocused = false;
+    }, 0);
   }
 
   public deleteRepondent(index) {
     this.repondentsData.splice(index, 1);
   }
 
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: this.isUpdate ? this.translateService.instant('groups.groupUpdated') : this.translateService.instant('groups.groupCreated'),
-      duration: 2000
-    });
-    toast.present();
+  public search() {
+    if (this.formGroup.get('searchText').value) {
+      this.store.dispatch(new GetUsers({ search: this.formGroup.get('searchText').value }));
+    } else {
+      this.searchData = [];
+    }
   }
 
-  ngOnInit() {
+  private declareObservables() {
     this.store.pipe(select(selectGroupList)).subscribe((res) => {
       if (res.length > 0 && res[0].owner && this.isUpdate) {
         this.updateForm(res[0]);
@@ -107,6 +118,13 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
         this.formGroup.get('repondents').disable();
       }
     });
+
+    this.store.pipe(select(selectUsersList)).subscribe((res) => {
+      if (Array.isArray(res)) {
+        this.searchData = res;
+      }
+    });
+
     this.activatedRoute.url.subscribe((res) => {
       const state = this.router.getCurrentNavigation().extras.state;
       this.isUpdate = state && state.data ? true : false;
@@ -119,5 +137,17 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
       }
       this.formGroup.get('owner').disable();
     });
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: this.isUpdate ? this.translateService.instant('groups.groupUpdated') : this.translateService.instant('groups.groupCreated'),
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  ngOnInit() {
+    this.declareObservables();
   }
 }
