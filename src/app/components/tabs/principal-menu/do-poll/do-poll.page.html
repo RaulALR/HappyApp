@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="pollData">
+<ion-content [fullscreen]="true" *ngIf="pollData" class="poll-container">
   <ion-list>
     <ng-container *ngFor="let item of pollData.questions; let i = index">
       <ion-item lines="none">
@@ -18,7 +18,7 @@
           <h1>{{item}}</h1>
         </ion-text>
       </ion-item>
-      <ion-item>
+      <ion-item class="icon-container">
         <ion-icon src="./assets/custom-icons/sad.svg" (click)="addAnswer(i, 0)"></ion-icon>
         <ion-icon src="./assets/custom-icons/nosense.svg" (click)="addAnswer(i, 1)"></ion-icon>
         <ion-icon src="./assets/custom-icons/happy.svg" (click)="addAnswer(i, 2)"></ion-icon>

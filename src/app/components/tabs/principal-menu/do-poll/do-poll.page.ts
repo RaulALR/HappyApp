@@ -43,7 +43,7 @@ export class DoPollsPage extends BaseComponent implements OnInit {
 
   public getFullAnswer() {
     let state = true;
-    if (this.pollAnswer.length === this.pollData.questions.length) {
+    if (this.pollData && this.pollData.questions && this.pollAnswer.length === this.pollData.questions.length) {
       state = false;
       for (const iterator of this.pollAnswer) {
         if (!iterator) {
