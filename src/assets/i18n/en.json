@@ -5,7 +5,8 @@
         "save": "Save",
         "delete": "Delete",
         "select": "Select",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "send": "Send"
     },
     "principal": {
         "principalTitle": "Principal menu",

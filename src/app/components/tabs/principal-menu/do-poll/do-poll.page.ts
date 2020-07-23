@@ -19,6 +19,7 @@ import { GetPolls, GetPoll } from '../../../../redux/poll-reducer.ts/poll.action
 export class DoPollsPage extends BaseComponent implements OnInit {
   public pollData: IPollData;
   public pollId = '';
+  public pollAnswer = [];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -34,6 +35,29 @@ export class DoPollsPage extends BaseComponent implements OnInit {
 
   public navigateToPoll(item) {
     this.store.dispatch(new GetPoll({ _id: item._id }));
+  }
+
+  public addAnswer(index, res) {
+    this.pollAnswer[index] = res;
+  }
+
+  public getFullAnswer() {
+    let state = true;
+    if (this.pollAnswer.length === this.pollData.questions.length) {
+      state = false;
+      for (const iterator of this.pollAnswer) {
+        if (!iterator) {
+          state = true;
+        }
+
+      }
+    }
+
+    return state;
+  }
+
+  public sendAnswer() {
+    return true;
   }
 
   private getPolls() {

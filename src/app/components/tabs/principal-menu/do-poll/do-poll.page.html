@@ -10,19 +10,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-list *ngIf="pollData">
-    <ng-container *ngFor="let item of pollData.questions">
-      <ion-item>
+<ion-content [fullscreen]="true" *ngIf="pollData">
+  <ion-list>
+    <ng-container *ngFor="let item of pollData.questions; let i = index">
+      <ion-item lines="none">
         <ion-text color="primary" expand="block">
           <h1>{{item}}</h1>
         </ion-text>
-        <ion-icon name="logo-octocat"></ion-icon>
-        <ion-icon name="logo-ionitron"></ion-icon>
-        <ion-icon name="logo-ionitron"></ion-icon>
-        <ion-icon name="logo-ionitron"></ion-icon>
-        <ion-icon name="logo-ionitron"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-icon src="./assets/custom-icons/sad.svg" (click)="addAnswer(i, 0)"></ion-icon>
+        <ion-icon src="./assets/custom-icons/nosense.svg" (click)="addAnswer(i, 1)"></ion-icon>
+        <ion-icon src="./assets/custom-icons/happy.svg" (click)="addAnswer(i, 2)"></ion-icon>
       </ion-item>
     </ng-container>
   </ion-list>
+  <ion-button (click)="sendAnswer()" expand="block" [disabled]="getFullAnswer()">
+    {{'commons.send' | translate}}
+  </ion-button>
 </ion-content>
