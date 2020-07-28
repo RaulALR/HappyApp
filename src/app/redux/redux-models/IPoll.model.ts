@@ -19,4 +19,10 @@ export interface IUpdatePollData {
     groupPoll: string;
     questions: string[];
     owner: string;
+    answer?: IAnswerData;
+}
+
+export interface IAnswerData {
+    user: string;
+    answersData: string[];
 }

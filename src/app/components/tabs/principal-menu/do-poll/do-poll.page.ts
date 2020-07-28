@@ -9,7 +9,7 @@ import { UtilsService } from '../../../../core/shared/utils';
 import { Store, select } from '@ngrx/store';
 import { selectPollList } from '../../../../redux/poll-reducer.ts/poll.selector';
 import { IPollData, IGetPolls } from '../../../../redux/redux-models/IPoll.model';
-import { GetPolls, GetPoll } from '../../../../redux/poll-reducer.ts/poll.actions';
+import { GetPolls, GetPoll, UpdatePoll } from '../../../../redux/poll-reducer.ts/poll.actions';
 
 @Component({
   selector: 'app-do-poll',
@@ -49,7 +49,6 @@ export class DoPollsPage extends BaseComponent implements OnInit {
         if (!iterator) {
           state = true;
         }
-
       }
     }
 
@@ -57,7 +56,18 @@ export class DoPollsPage extends BaseComponent implements OnInit {
   }
 
   public sendAnswer() {
-    return true;
+    const params = {
+      _id: this.pollId,
+      pollName: this.pollData.pollName || null,
+      groupPoll: this.pollData.groupPoll || null,
+      questions: this.pollData.questions || null,
+      owner: this.pollData.owner || null,
+      answer: {
+        user: JSON.parse(sessionStorage.user).email || null,
+        answersData: this.pollAnswer
+      }
+    };
+    this.store.dispatch(new UpdatePoll(params));
   }
 
   private getPolls() {

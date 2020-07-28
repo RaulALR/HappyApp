@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [icon]="buttonIcon" defaultHref="{{selectBackUrl()}}">
+      <ion-back-button defaultHref="{{selectBackUrl()}}">
       </ion-back-button>
       <ion-title>{{(isUpdate ? 'group.titleUpdate' : 'group.title') | translate}}</ion-title>
     </ion-buttons>
@@ -23,7 +23,7 @@
     <div class="autocomplete">
       <ion-searchbar formControlName="searchText" (ionFocus)="isFocused = true" (ionChange)="search()"
         (ionBlur)="setFocus()" debounce=100 placeholder="{{'group.repondents' | translate}}"
-        disabled="getDisableDelete()">
+        disabled="{{getDisableDelete()}}">
       </ion-searchbar>
       <ion-list *ngIf="isFocused">
         <ion-item *ngFor="let item of searchData" (click)="addRepondent(item)">
@@ -34,9 +34,9 @@
 
     <ion-card *ngIf="repondentsData && repondentsData.length > 0">
       <ng-container *ngFor="let item of repondentsData; let i = index">
-        <ion-chip>
+        <ion-chip class="disabled">
           <ion-label>{{item}}</ion-label>
-          <ion-icon name="close-circle" (click)="deleteRepondent(i)" disabled="getDisableDelete("></ion-icon>
+          <ion-icon name="close-circle" (click)="deleteRepondent(i)"></ion-icon>
         </ion-chip>
       </ng-container>
     </ion-card>

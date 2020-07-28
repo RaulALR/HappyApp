@@ -101,7 +101,8 @@ export class PollEffects {
                     pollName: action.payload && action.payload.pollName ? action.payload.pollName : null,
                     groupPoll: action.payload && action.payload.groupPoll ? action.payload.groupPoll : null,
                     questions: action.payload && action.payload.questions ? action.payload.questions : null,
-                    owner: action.payload && action.payload.owner ? action.payload.owner : null
+                    owner: action.payload && action.payload.owner ? action.payload.owner : null,
+                    answer: action.payload && action.payload.answer ? action.payload.answer : null
                 };
 
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'PUT', params).pipe(

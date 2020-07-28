@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-login-register-main',
   templateUrl: 'login-register-main.page.html'
 })
-export class LoginRegisterPage {
+export class LoginRegisterMainPage {
 
-  constructor() {}
+  constructor() { }
 
 }

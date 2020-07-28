@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginRegisterPageRoutingModule } from './login-register-main-routing.module';
 
-import { LoginRegisterPage } from './login-register-main.page';
+import { LoginRegisterMainPage } from './login-register-main.page';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { LoginRegisterPage } from './login-register-main.page';
     LoginRegisterPageRoutingModule,
     TranslateModule
   ],
-  declarations: [LoginRegisterPage]
+  declarations: [LoginRegisterMainPage]
 })
 export class LoginRegisterMainPageModule {}

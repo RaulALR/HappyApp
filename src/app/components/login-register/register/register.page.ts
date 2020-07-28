@@ -30,7 +30,7 @@ export class RegisterPage extends BaseComponent implements OnInit {
     console.log(this.formGroup);
   }
 
-  public signUp(event) {
+  public signUp() {
     const params = {
       email: this.formGroup.get('email').value,
       firstName: this.formGroup.get('firstName').value,
