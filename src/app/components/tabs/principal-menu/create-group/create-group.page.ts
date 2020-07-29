@@ -93,7 +93,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
   public setFocus() {
     setTimeout(() => {
       this.isFocused = false;
-    }, 0);
+    }, 100);
   }
 
   public deleteRepondent(index) {

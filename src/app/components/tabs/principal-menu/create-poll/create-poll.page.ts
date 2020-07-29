@@ -98,6 +98,10 @@ export class CreatePollPage extends BaseComponent implements OnInit {
     this.questionData.splice(index, 1);
   }
 
+  public navigateToPoll() {
+    this.store.dispatch(new GetPoll({ _id: this.pollId, showResults: true }));
+  }
+
   private updateForm(data) {
     this.formGroup.get('pollName').setValue(data.pollName);
     this.formGroup.get('groupPoll').setValue(data.groupPoll);
@@ -129,6 +133,7 @@ export class CreatePollPage extends BaseComponent implements OnInit {
       const state = this.router.getCurrentNavigation().extras.state;
       this.isUpdate = state && state.data ? true : false;
       this.store.dispatch(new GetGroups({ owner: JSON.parse(sessionStorage.user).email }));
+      this.questionData = [];
       if (this.isUpdate) {
         this.formGroup.get('groupPoll').disable();
         this.pollId = state.data._id;

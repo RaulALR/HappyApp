@@ -6,7 +6,8 @@
         "delete": "Delete",
         "select": "Select",
         "cancel": "Cancel",
-        "send": "Send"
+        "send": "Send",
+        "showData": "Show results"
     },
     "principal": {
         "principalTitle": "Principal menu",
@@ -61,7 +62,8 @@
     "viewPoll": {
         "title": "View poll list",
         "pollDeleted": "Poll deleted",
-        "doPoll": "Poll"
+        "doPoll": "Poll",
+        "titleResults": "Results"
     },
     "group": {
         "owner": "Owner",

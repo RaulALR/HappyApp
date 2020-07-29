@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/view-polls">
+      </ion-back-button>
+      <ion-title>{{'viewPoll.titleResults'| translate}}</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="pollData">
+    <ng-container *ngFor="let item of pollData.questions; let i = index">
+      <ion-item>
+        <ion-label>{{item}} </ion-label>
+        <ion-item class="icon-container">
+          <ion-icon src="./assets/custom-icons/sad.svg" *ngIf="pollData.answers.answersData[i] === 1"></ion-icon>
+          <ion-icon src="./assets/custom-icons/nosense.svg" *ngIf="pollData.answers.answersData[i] === 2"></ion-icon>
+          <ion-icon src="./assets/custom-icons/happy.svg" *ngIf="pollData.answers.answer.answersData[i] === 3">
+          </ion-icon>
+        </ion-item>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

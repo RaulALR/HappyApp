@@ -4,6 +4,7 @@ export interface IGetPolls {
 
 export interface IGetPoll {
     _id: string;
+    showResults?: boolean;
 }
 
 export interface IPollData {
@@ -11,6 +12,7 @@ export interface IPollData {
     groupPoll: string;
     questions: string[];
     owner: string;
+    answer?: IAnswerData;
 }
 
 export interface IUpdatePollData {
@@ -19,7 +21,7 @@ export interface IUpdatePollData {
     groupPoll: string;
     questions: string[];
     owner: string;
-    answer?: IAnswerData;
+    answers?: IAnswerData;
 }
 
 export interface IAnswerData {

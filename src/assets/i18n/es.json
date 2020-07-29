@@ -6,7 +6,8 @@
         "delete": "Eliminar",
         "select": "Seleccionar",
         "cancel": "Cancelar",
-        "send": "Enviar"
+        "send": "Enviar",
+        "showData": "Ver resultados"
     },
     "principal": {
         "principalTitle": "Menú principal",
@@ -61,7 +62,8 @@
     "viewPoll": {
         "title": "Lista de encuestas",
         "pollDeleted": "Encuesta eliminada",
-        "doPoll": "Encuesta"
+        "doPoll": "Encuesta",
+        "titleResults": "Resultados"
     },
     "group": {
         "owner": "Anfitrión",

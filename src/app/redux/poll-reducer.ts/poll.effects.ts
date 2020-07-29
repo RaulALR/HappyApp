@@ -48,10 +48,14 @@ export class PollEffects {
                     map(
                         (res) => {
                             const navigationExtras: NavigationExtras = { state: { data: { _id: action.payload._id } } };
-                            if (res.data.owner === JSON.parse(sessionStorage.user).email) {
-                                this.router.navigate(['/tabs/create-poll'], navigationExtras);
+                            if (!action.payload.showResults) {
+                                if (res.data.owner === JSON.parse(sessionStorage.user).email) {
+                                    this.router.navigate(['/tabs/create-poll'], navigationExtras);
+                                } else {
+                                    this.router.navigate(['/tabs/do-poll'], navigationExtras);
+                                }
                             } else {
-                                this.router.navigate(['/tabs/do-poll'], navigationExtras);
+                                this.router.navigate(['/tabs/show-poll']);
                             }
                             return new GetPollSuccess([res.data]);
                         },
@@ -102,7 +106,7 @@ export class PollEffects {
                     groupPoll: action.payload && action.payload.groupPoll ? action.payload.groupPoll : null,
                     questions: action.payload && action.payload.questions ? action.payload.questions : null,
                     owner: action.payload && action.payload.owner ? action.payload.owner : null,
-                    answer: action.payload && action.payload.answer ? action.payload.answer : null
+                    answers: action.payload && action.payload.answers ? action.payload.answers : null
                 };
 
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.poll, 'PUT', params).pipe(
