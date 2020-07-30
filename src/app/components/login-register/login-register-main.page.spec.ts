@@ -1,7 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LoginRegisterPage } from './login-register-main.page';
+import { LoginRegisterPage } from './login-register/login-register.page';
 
 describe('LoginRegisterPage', () => {
   let component: LoginRegisterPage;

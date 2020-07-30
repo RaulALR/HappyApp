@@ -22,7 +22,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
   public formGroup: FormGroup;
   public isUpdate = false;
   public groupId: string;
-  public repondentsData = [];
+  public repondentsData: string[];
   public searchText = '';
   public searchData = [];
   public isFocused = false;
@@ -73,7 +73,7 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
   private updateForm(data) {
     this.formGroup.get('groupName').setValue(data.groupName);
     this.formGroup.get('owner').setValue(data.owner);
-    this.repondentsData = data.repondents;
+    this.repondentsData = Object.values(data.repondents);
   }
 
   public selectBackUrl() {
@@ -86,7 +86,11 @@ export class CreateGroupPage extends BaseComponent implements OnInit {
 
   public addRepondent(item) {
     if (item) {
-      this.repondentsData.push(item.email);
+      if (Array.isArray(this.repondentsData)) {
+        this.repondentsData.push(item.email);
+      } else {
+
+      }
     }
   }
 

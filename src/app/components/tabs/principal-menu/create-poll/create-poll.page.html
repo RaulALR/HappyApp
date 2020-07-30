@@ -44,10 +44,12 @@
       <ion-button block type="submit" [disabled]="!formGroup.valid" (click)="saveData()">
         {{(isUpdate ? 'commons.update' : 'commons.create') | translate}}
       </ion-button>
-      <ion-button type="submit" color="danger" (click)="deletePoll()" disabled="{{getDisableDelete()}}">
+      <ion-button type="submit" color="danger" (click)="deletePoll()" disabled="{{getDisableDelete()}}"
+        *ngIf="isUpdate">
         {{('commons.delete') | translate}}
       </ion-button>
-      <ion-button type="submit" color="danger" (click)="navigateToPoll()" disabled="{{getDisableDelete()}}">
+      <ion-button type="submit" color="danger" (click)="navigateToPoll()" disabled="{{getDisableDelete()}}"
+        *ngIf="isUpdate">
         {{('commons.showData') | translate}}
       </ion-button>
     </div>

@@ -6,6 +6,7 @@ import { BaseComponent } from 'src/app/core/shared/base.component';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../redux/app.state';
 import { UtilsService } from '../../../core/shared/utils';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -21,6 +22,7 @@ export class SettingsPage extends BaseComponent {
     public store: Store<IAppState>,
     public utils: UtilsService,
     public translateService: TranslateService,
+    public authService: AuthService
   ) {
     super(store, utils, translateService);
     this.translateService.setDefaultLang('es');
@@ -59,6 +61,7 @@ export class SettingsPage extends BaseComponent {
 
   public closeSession() {
     this.presentToast();
+    this.authService.logout();
     this.router.navigate(['/login-register-main']);
   }
 }
