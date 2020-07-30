@@ -62,7 +62,7 @@ export class DoPollsPage extends BaseComponent implements OnInit {
       groupPoll: this.pollData.groupPoll || null,
       questions: this.pollData.questions || null,
       owner: this.pollData.owner || null,
-      answer: {
+      answers: {
         user: JSON.parse(sessionStorage.user).email || null,
         answersData: this.pollAnswer
       }
