@@ -75,5 +75,9 @@
         "groupUpdated": "Grupo actualizado",
         "titleUpdate": "Actualizar grupo",
         "groupDeleted": "Grupo eliminado"
+    },
+    "errors": {
+        "required": "Campo requerido",
+        "email": "Debe ser un correo electrónico"
     }
 }

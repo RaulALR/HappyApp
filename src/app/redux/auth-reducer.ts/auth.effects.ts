@@ -49,11 +49,8 @@ export class AuthEffects {
         switchMap(
             (action) => {
                 const params = {
-                    lastName: action.payload && action.payload.lastName ? action.payload.lastName : null,
-                    firstName: action.payload && action.payload.firstName ? action.payload.firstName : null,
                     password: action.payload && action.payload.password ? action.payload.password : null,
-                    email: action.payload && action.payload.email ? action.payload.email : null,
-                    repeatPassword: action.payload && action.payload.repeatPassword ? action.payload.repeatPassword : null
+                    email: action.payload && action.payload.email ? action.payload.email : null
                 };
 
                 return this.httpService.callBackEnd(GlobalConstants.endpoint.register, 'POST', params).pipe(

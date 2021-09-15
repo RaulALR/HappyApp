@@ -1,0 +1,14 @@
+<div id="error-container">
+    <ng-container *ngIf="statusError">
+        <ng-container *ngFor="let validators of validationOptions; let i = index">
+            <div *ngIf="formControlError[validators]" class="error-valid-container">
+                <div class="icon-container"> 
+                    <ion-icon name="alert-circle-outline"></ion-icon>
+                </div>
+                <div>
+                    <ion-label position="floating">{{labelError[i].msg | translate}}</ion-label>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>
