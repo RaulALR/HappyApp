@@ -10,28 +10,29 @@
 <ion-content>
   <form [formGroup]="formGroup">
     <ion-item lines="full">
+      <ion-label position="floating">{{'register.firstName' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="firstName"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">{{'register.lastName' | translate}}</ion-label>
+      <ion-input type="text" required formControlName="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
       <ion-label position="floating">{{'register.email' | translate}}</ion-label>
       <ion-input type="email" required formControlName="email"></ion-input>
     </ion-item>
-    <app-errors [formController]="formGroup.get('email')" [validationOptions]="getFormObject('email')"
-      [labelError]="getLabelError('email')">
-    </app-errors>
 
     <ion-item lines="full">
       <ion-label position="floating">{{'register.password' | translate}}</ion-label>
       <ion-input type="password" required formControlName="password"></ion-input>
     </ion-item>
-    <app-errors [formController]="formGroup.get('password')" [validationOptions]="getFormObject('password')"
-      [labelError]="getLabelError('password')">
-    </app-errors>
 
     <ion-item lines="full">
       <ion-label position="floating">{{'register.repeatPassword' | translate}}</ion-label>
       <ion-input type="password" required formControlName="repeatPassword"></ion-input>
     </ion-item>
-    <app-errors [formController]="formGroup.get('repeatPassword')" [validationOptions]="getFormObject('repeatPassword')"
-      [labelError]="getLabelError('repeatPassword')">
-    </app-errors>
 
     <ion-row>
       <ion-col>
